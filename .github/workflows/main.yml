@@ -24,7 +24,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v4
@@ -39,6 +39,8 @@ jobs:
       - name: Copy files to the test website with the AWS CLI
         run: |
           aws s3 sync ./build s3://waleadedeji.click
+      - name: Create Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*
 
         # - name: Install Modules
         #   run: npm ci
