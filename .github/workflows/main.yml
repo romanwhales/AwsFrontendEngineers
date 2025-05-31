@@ -40,8 +40,7 @@ jobs:
         run: |
           aws s3 sync ./build s3://waleadedeji.click
       - name: Create Cloudfront Invalidation
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*
-
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
         # - name: Install Modules
         #   run: npm ci
         # - name: Build Application
